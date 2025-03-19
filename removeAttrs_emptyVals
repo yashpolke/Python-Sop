@@ -1,0 +1,16 @@
+node = hou.pwd()
+geo = node.geometry()
+
+# Add code to modify contents of geo.
+# Use drop down menu to select examples.
+# Loop through all primitive attributes
+for attr in geo.primAttribs():
+    # Skip non-string attributes
+    if attr.dataType() != hou.attribData.String:
+        continue
+    # Get all string values for the attribute
+    values = geo.primStringAttribValues(attr.name())    
+    # Check if all values are empty strings
+    if all(value == "" for value in values):   
+    # Remove the attribute
+        attr.destroy()
